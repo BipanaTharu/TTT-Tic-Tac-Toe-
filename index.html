@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="msg-container hide">
+        <div class="msg-box">
+            <p id="msg"></p>
+            <button id="new_btn">New Game</button>
+        </div>
+    </div>
+
+    <!-- Name Input Modal for Offline Game -->
+    <div class="modal-container hide" id="nameInputModal">
+        <div class="modal-box">
+            <h2 style="margin-bottom: 20px; color: #2d1b4e;">Enter Player Names</h2>
+            <input type="text" id="player1NameInput" placeholder="Player 1 Name (🥰)" 
+                   style="padding: 12px; border-radius: 8px; border: 2px solid #2c6442ff; 
+                   width: 100%; margin-bottom: 15px; font-size: 1em;">
+            <input type="text" id="player2NameInput" placeholder="Player 2 Name (😊)" 
+                   style="padding: 12px; border-radius: 8px; border: 2px solid #2c6442ff; 
+                   width: 100%; margin-bottom: 20px; font-size: 1em;">
+            <button onclick="submitOfflineNames()" 
+                    style="padding: 12px 30px; cursor: pointer; background: linear-gradient(135deg, #2c6442ff 0%, #3d8558 100%); 
+                    color: rgb(0, 0, 0); border: none; border-radius: 10px; font-size: 1em; width: 100%;">
+                Start Game
+            </button>
+            <button onclick="backToModes()" 
+                    style="padding: 12px 30px; cursor: pointer; background: #666; 
+                    color: rgb(24, 22, 22); border: none; border-radius: 10px; font-size: 1em; width: 100%; margin-top: 10px;">
+                Back
+            </button>
+        </div>
+    </div>
+
+    <!-- Name Input Modal for Online Game -->
+    <div class="modal-container hide" id="onlineNameModal">
+        <div class="modal-box">
+            <h2 id="onlineNameTitle" style="margin-bottom: 20px; color: #2d1b4e;">Enter Your Name</h2>
+            <input type="text" id="onlinePlayerName" placeholder="Your Name" 
+                   style="padding: 12px; border-radius: 8px; border: 2px solid #2c6442ff; 
+                   width: 100%; margin-bottom: 20px; font-size: 1em;">
+            <button onclick="submitOnlineName()" 
+                    style="padding: 12px 30px; cursor: pointer; background: linear-gradient(135deg, #2c6442ff 0%, #3d8558 100%); 
+                    color: white; border: none; border-radius: 10px; font-size: 1em; width: 100%;">
+                Continue
+            </button>
+            <button onclick="backToModes()" 
+                    style="padding: 12px 30px; cursor: pointer; background: #666; 
+                    color: white; border: none; border-radius: 10px; font-size: 1em; width: 100%; margin-top: 10px;">
+                Back
+            </button>
+        </div>
+    </div>
+
+    <main>
+        <h1>🎮 Tic Tac Toe</h1>
+        
+        <div class="mode-selection" id="modeSelection">
+            <h2 style="margin-bottom: 20px; color: white;">Choose Mode</h2>
+            <button class="mode-btn" onclick="startOfflineGame()">⚔️ Offline (Same Device)</button>
+            <button class="mode-btn" onclick="showOnlineOptions()">🌐 Online Multiplayer</button>
+        </div>
+
+        <div class="hide" id="onlineOptions">
+            <button class="mode-btn" onclick="createOnlineRoom()">➕ Create Room</button>
+            <div class="join-room" style="margin: 20px 0;">
+                <input type="text" id="roomCodeInput" placeholder="Enter 5-digit code" maxlength="5" 
+                       style="padding: 10px; border-radius: 5px; border: none; text-align: center;">
+                <button class="mode-btn" onclick="joinOnlineRoom()">🤝 Join Room</button>
+            </div>
+            <button class="mode-btn" onclick="backToModes()">⬅️ Back</button>
+        </div>
+
+        <div class="hide" id="gameArea">
+            <div class="game-info">
+                <div class="status" id="status" style="color: #0c0c0c; font-size:
+                 1.2rem; margin-bottom: 10px;">
+                    Choose a mode to start
+                </div>
+                <div class="room-code hide" id="roomCodeDisplay" 
+                     style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 
+                     5px; margin-bottom: 15px; color: white;">
+                </div>
+            </div>
+
+            <div class="game">
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+            </div>
+
+            <div class="button-container" style="margin-top: 20px;">
+                <button id="reset_btn">Reset Game</button>
+                <button onclick="backToModes()" style="background-color: #444;">Main Menu</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
